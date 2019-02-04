@@ -3,9 +3,9 @@ import { Observable, combineLatest } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { getSourcesUrl } from "../utils/index";
+import { getSourcesUrl, getNewsUrl } from "../utils/index";
 import { API_KEY } from "./config/index";
-import { getNewsUrl } from "../utils/get-url.util";
+import { Article, Source } from "./models/index";
 
 @Injectable()
 export class ApiDataService {
@@ -22,8 +22,8 @@ export class ApiDataService {
     /*
      * Return sources stream
      */
-    public getSources(): Observable<any> {
-        return this.http.get(this.sourcesUrl);
+    public getSources(): Observable<Source> {
+        return this.http.get(this.sourcesUrl) as Observable<Source>;
     }
 
     /*
@@ -31,10 +31,12 @@ export class ApiDataService {
      *
      * @param: sources: Array<any>
      */
-    public getNewsForSource(sources: Array<any>): Observable<any> {
-        const sources$: Array<Observable<any>> = sources.map(({ id }) => {
+    public getNewsForSource(
+        sources: Array<Source>
+    ): Observable<Array<Article>> {
+        const sources$: Array<Observable<Article>> = sources.map(({ id }) => {
             const url: string = getNewsUrl(this.apiKey, id);
-            return this.http.get(url);
+            return this.http.get(url) as Observable<Article>;
         });
 
         return combineLatest(...sources$);
