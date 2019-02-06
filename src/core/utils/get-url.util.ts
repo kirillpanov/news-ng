@@ -1,5 +1,5 @@
 export function getSourcesUrl(key: string): string {
-    return `https://newsapi.org/v2/sources?apiKey=${key}`;
+    return `https://newsapi.org/v2/sources?language=en&apiKey=${key}`;
 }
 
 export function getNewsUrl(key: string, source: string): string {

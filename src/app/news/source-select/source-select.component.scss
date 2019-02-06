@@ -1,0 +1,15 @@
+:host {
+    position: relative;
+    display: block;
+}
+
+.drop-down {
+    max-height: 10rem;
+    overflow-y: auto;
+    width: fit-content;
+    min-width: 20rem;
+    position: absolute;
+    top: 0;
+    border: 0.1rem solid;
+    background: #ffffff;
+}

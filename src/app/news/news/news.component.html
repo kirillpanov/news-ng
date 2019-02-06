@@ -1,3 +1,7 @@
+<app-action-bar
+    [sources]="sources$ | async"
+    (select)="onSelectSource($event)"
+></app-action-bar>
 <p>
-  news works!
+    news works!
 </p>

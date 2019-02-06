@@ -1,3 +1,5 @@
+import { GetArticlesResponse } from "./models/getArticlesResponse";
+import { GetSourcesResponse } from "./models/getSourcesResponse";
 import { Observable, combineLatest } from "rxjs";
 
 import { HttpClient } from "@angular/common/http";
@@ -11,7 +13,6 @@ import { Article, Source } from "./models/index";
 export class ApiDataService {
     private apiKey: string = API_KEY;
     private http: HttpClient;
-    private sources: any;
     private sourcesUrl: string;
 
     constructor(http: HttpClient) {
@@ -22,8 +23,8 @@ export class ApiDataService {
     /*
      * Return sources stream
      */
-    public getSources(): Observable<Source> {
-        return this.http.get(this.sourcesUrl) as Observable<Source>;
+    public getSources(): Observable<GetSourcesResponse> {
+        return this.http.get(this.sourcesUrl) as Observable<GetSourcesResponse>;
     }
 
     /*
@@ -31,14 +32,8 @@ export class ApiDataService {
      *
      * @param: sources: Array<any>
      */
-    public getNewsForSource(
-        sources: Array<Source>
-    ): Observable<Array<Article>> {
-        const sources$: Array<Observable<Article>> = sources.map(({ id }) => {
-            const url: string = getNewsUrl(this.apiKey, id);
-            return this.http.get(url) as Observable<Article>;
-        });
-
-        return combineLatest(...sources$);
+    public getNewsForSource(id: string): Observable<GetArticlesResponse> {
+        const url: string = getNewsUrl(this.apiKey, id);
+        return this.http.get(url) as Observable<GetArticlesResponse>;
     }
 }

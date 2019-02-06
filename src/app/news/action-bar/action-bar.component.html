@@ -1,3 +1,7 @@
 <p>
-  action-bar works!
+    action-bar works!
 </p>
+<app-source-select
+    [sources]="sources"
+    (select)="onSelect($event)"
+></app-source-select>

@@ -1,0 +1,10 @@
+<div class="source-select" (click)="showDropDown()">
+    {{ selectedSource?.name }}
+</div>
+<div class="drop-down" *ngIf="ifShowDropDown">
+    <app-source-select-item
+        [source]="source"
+        (click)="selectSource($event, source.id)"
+        *ngFor="let source of sources"
+    ></app-source-select-item>
+</div>

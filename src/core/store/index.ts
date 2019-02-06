@@ -1,1 +1,2 @@
-export * from "./reducers/index";
+export * from "./reducers";
+export * from "./news/index";

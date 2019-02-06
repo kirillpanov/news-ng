@@ -1,15 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, EventEmitter, Output } from "@angular/core";
+import { ApiDataModels } from "../../../core/index";
 
 @Component({
-  selector: 'app-action-bar',
-  templateUrl: './action-bar.component.html',
-  styleUrls: ['./action-bar.component.scss']
+    selector: "app-action-bar",
+    templateUrl: "./action-bar.component.html",
+    styleUrls: ["./action-bar.component.scss"]
 })
-export class ActionBarComponent implements OnInit {
+export class ActionBarComponent {
+    @Output()
+    public select: EventEmitter<number> = new EventEmitter();
 
-  constructor() { }
+    @Input()
+    public sources: Array<ApiDataModels.Source> = [];
 
-  ngOnInit() {
-  }
-
+    public onSelect(id: number): void {
+        this.select.emit(id);
+    }
 }
