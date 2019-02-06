@@ -13,6 +13,7 @@ import { PageTitleComponent } from "./common/page-title/page-title.component";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
 import { appEffects, reducers, metaReducers } from "../core/index";
+import { EditorModule } from "./editor/editor.module";
 
 @NgModule({
     declarations: [
@@ -26,6 +27,7 @@ import { appEffects, reducers, metaReducers } from "../core/index";
         BrowserModule,
         AppRoutingModule,
         ArticleModule,
+        EditorModule,
         NewsModule,
         StoreModule.forRoot(reducers, { metaReducers }),
         EffectsModule.forRoot(appEffects)
