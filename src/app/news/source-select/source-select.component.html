@@ -1,6 +1,6 @@
-<div class="source-select" (click)="showDropDown()">
+<button mat-button class="source-select" (click)="showDropDown()">
     {{ selectedSource?.name }}
-</div>
+</button>
 <div class="drop-down" *ngIf="ifShowDropDown">
     <app-source-select-item
         [source]="source"

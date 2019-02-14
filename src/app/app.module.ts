@@ -1,5 +1,5 @@
 import { HttpClientModule } from "@angular/common/http";
-import { ApiDataService } from "./../core/services/api-data.service";
+import { NewsApiDataService } from "../core/services/index";
 import { HeaderModule } from "./common/header/header.module";
 import { environment } from "./../environments/environment";
 import { appRoutes } from "./routes";
@@ -12,7 +12,6 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ArticleModule } from "./article/article.module";
 import { FooterComponent } from "./common/footer/footer.component";
-import { HeaderComponent } from "./common/header/header.component";
 import { PageTitleComponent } from "./common/page-title/page-title.component";
 import { StoreModule } from "@ngrx/store";
 import { EffectsModule } from "@ngrx/effects";
@@ -38,7 +37,7 @@ import { StoreDevtoolsModule } from "@ngrx/store-devtools";
         }),
         EffectsModule.forRoot(appEffects)
     ],
-    providers: [NewsStoreService, ApiDataService],
+    providers: [NewsStoreService, NewsApiDataService],
     bootstrap: [AppComponent]
 })
 export class AppModule {}

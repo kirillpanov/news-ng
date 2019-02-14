@@ -1,7 +1,14 @@
-<p>
-    action-bar works!
-</p>
 <app-source-select
     [sources]="sources"
     (select)="onSelect($event)"
 ></app-source-select>
+<app-news-filter (filter)="onFilter($event)"></app-news-filter>
+<div>
+    <label>
+        Only created by me
+        <input type="checkbox" (change)="onByMeSelect()" />
+    </label>
+</div>
+<button mat-button color="primary">
+    Add Article
+</button>

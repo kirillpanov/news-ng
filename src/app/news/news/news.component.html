@@ -1,7 +1,9 @@
 <app-action-bar
     [sources]="sources$ | async"
     (select)="onSelectSource($event)"
+    (filter)="onFilter($event)"
 ></app-action-bar>
-<p>
-    news works!
-</p>
+<app-news-line-item
+    *ngFor="let article of (articles$ | async)"
+    [article]="article"
+></app-news-line-item>
