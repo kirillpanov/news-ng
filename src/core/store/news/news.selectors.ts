@@ -8,3 +8,8 @@ export const selectSources = createSelector(
     selectNews,
     (state: NewsState) => state.sources
 );
+
+export const selectArticles = createSelector(
+    selectNews,
+    (state: NewsState) => state.articles
+);

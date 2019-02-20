@@ -9,6 +9,7 @@ export const FETCH_SOURCES_FAIL: string = "[NEWS]FETCH_SOURCES_FAIL";
 export const SELECT_SOURCE: string = "[NEWS]SELECT_SOURCE";
 export const FETCH_ARTICLES_SUCCESS: string = "[NEWS]FETCH_ARTICLES_SUCCESS";
 export const FETCH_ARTICLES_FAIL: string = "[NEWS]FETCH_ARTICLES_FAIL";
+export const FETCH_ALL_ARTICLES: string = "[NEWS]FETCH_ALL_ARTICLES";
 
 export class GetSourcesAction implements Action {
     readonly type: string = GET_SOURCES;
@@ -37,10 +38,12 @@ export class FetchSourcesFailAction implements Action {
 
 export class SelectSourceAction implements Action {
     readonly type: string = SELECT_SOURCE;
-    public payload: string;
+    public id: string;
+    public page?: number;
 
-    constructor(payload: string) {
-        this.payload = payload;
+    constructor(id: string, page?: number) {
+        this.id = id;
+        this.page = page;
     }
 }
 
@@ -57,9 +60,14 @@ export class FetchArticlesFailAction implements Action {
     readonly type: string = FETCH_ARTICLES_FAIL;
 }
 
+export class FetchAllArticles implements Action {
+    readonly type: string = FETCH_ALL_ARTICLES;
+}
+
 export type NewsAction =
     | FetchSourcesSuccessAction
     | GetSourcesAction
     | GetSourcesSuccessAction
     | FetchSourcesAction
-    | FetchSourcesFailAction;
+    | FetchSourcesFailAction
+    | FetchAllArticles;

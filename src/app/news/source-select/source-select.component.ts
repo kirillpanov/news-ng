@@ -23,7 +23,7 @@ export class SourceSelectComponent {
     private elementRef: ElementRef;
 
     @Output()
-    public select = new EventEmitter<number>();
+    public select = new EventEmitter<string>();
 
     @Input()
     public sources: Array<ApiDataModels.Source> = [];
@@ -37,7 +37,6 @@ export class SourceSelectComponent {
     }
 
     public showDropDown(): void {
-        console.log("show");
         this.ifShowDropDown = true;
     }
 
@@ -50,7 +49,9 @@ export class SourceSelectComponent {
         }
     }
 
-    public selectSource(_, id: number): void {
+    public selectSource(_, id: string): void {
+        this.selectedSource = this.sources.find(source => source.id === id);
         this.select.emit(id);
+        this.ifShowDropDown = false;
     }
 }
