@@ -1,25 +1,39 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from "@angular/core/testing";
 
-import { NewsComponent } from './news.component';
+import { NewsComponent } from "./news.component";
+import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { NewsStoreService } from "./../../../core/index";
 
-describe('NewsComponent', () => {
-  let component: NewsComponent;
-  let fixture: ComponentFixture<NewsComponent>;
+describe("NewsComponent", () => {
+    let component: NewsComponent;
+    let fixture: ComponentFixture<NewsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ NewsComponent ]
-    })
-    .compileComponents();
-  }));
+    const newsStoreServiceStub: any = jasmine.createSpyObj("NewsStoreService", [
+        "getSources",
+        "selectSource",
+        "getArticles"
+    ]);
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(NewsComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [NewsComponent],
+            providers: [
+                {
+                    provide: NewsStoreService,
+                    useValue: newsStoreServiceStub
+                }
+            ],
+            schemas: [NO_ERRORS_SCHEMA]
+        }).compileComponents();
+    }));
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(NewsComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
+
+    it("should create", () => {
+        expect(component).toBeTruthy();
+    });
 });

@@ -5,7 +5,7 @@ import { Observable, combineLatest } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 
-import { getSourcesUrl, getNewsUrl, getAllNewsUrl } from "./utils/index";
+import * as Utils from "./utils/index";
 import { API_KEY } from "./config/index";
 
 @Injectable()
@@ -16,7 +16,7 @@ export class NewsApiDataService {
 
     constructor(http: HttpClient) {
         this.http = http;
-        this.sourcesUrl = getSourcesUrl(this.apiKey);
+        this.sourcesUrl = Utils.getSourcesUrl(this.apiKey);
     }
 
     /*
@@ -38,12 +38,12 @@ export class NewsApiDataService {
         id: string,
         page: number = 1
     ): Observable<GetArticlesResponse> {
-        const url: string = getNewsUrl(this.apiKey, id, page);
+        const url: string = Utils.getNewsUrl(this.apiKey, id, page);
         return this.http.get(url) as Observable<GetArticlesResponse>;
     }
 
     public getAllNews(page: number = 1): Observable<GetArticlesResponse> {
-        const url: string = getAllNewsUrl(this.apiKey, page);
+        const url: string = Utils.getAllNewsUrl(this.apiKey, page);
         return this.http.get(url) as Observable<GetArticlesResponse>;
     }
 }
