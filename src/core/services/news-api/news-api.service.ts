@@ -1,6 +1,6 @@
 import { GetArticlesResponse } from "../models/getArticlesResponse";
 import { GetSourcesResponse } from "../models/getSourcesResponse";
-import { Observable, combineLatest } from "rxjs";
+import { Observable } from "rxjs";
 
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
