@@ -27,7 +27,6 @@ export function newsReducer(
 ): NewsState {
     switch (action.type) {
         case GET_SOURCES: {
-            console.log("state works");
             return {
                 ...state
             };
@@ -45,7 +44,7 @@ export function newsReducer(
                 .payload;
             return {
                 ...state,
-                sources: sources
+                sources
             };
         }
 
@@ -55,7 +54,7 @@ export function newsReducer(
             > = (action as FetchArticlesSuccessAction).payload;
             return {
                 ...state,
-                articles: articles
+                articles
             };
         }
 

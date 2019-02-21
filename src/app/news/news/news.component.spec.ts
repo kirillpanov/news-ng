@@ -1,7 +1,8 @@
+import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { async, ComponentFixture, TestBed } from "@angular/core/testing";
+import { of } from "rxjs";
 
 import { NewsComponent } from "./news.component";
-import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { NewsStoreService } from "./../../../core/index";
 
 describe("NewsComponent", () => {
@@ -13,6 +14,7 @@ describe("NewsComponent", () => {
         "selectSource",
         "getArticles"
     ]);
+    newsStoreServiceStub.getArticles.and.returnValue(of([{}]));
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
